@@ -8,7 +8,7 @@ The `examples` directory contains the full integration of various Terraform modu
 ## AWS vs OCI
 When I started the challenge I began with attempting to provision OCI resources.  After a while I was concerned that I would not be able to sufficiently learn the OCI API well enough to complete the challenge in the time alotted.  At that point I stopped working on OCI and instead migrated my solution to AWS (a provider I am much more familiar with.)  As a result the AWS example is my (mostly) completed challenge.  I decided to keep the OCI work in the repo as well as for posterity's sake.
 
-# Running the AWS module
+### Running the AWS module
 To run the AWS module cd into `examples/aws`.  You will need an AWS account with programatic access.  Your `access_key_id` and `access_secret_key` should be located in your `.aws/credentials` file as that's where the AWS provider will expect it. After filling out the terraform.tfvars file run `terraform init` followed by `terraform apply`
 
 There are 3 required parameters listed in the terraform.tfvars file: 
@@ -19,7 +19,7 @@ There are 3 required parameters listed in the terraform.tfvars file:
 
 My interpretation of the challenge was that ONLY the ports needed for the web server are to be opened therefore port 22 and thus ssh access in general would not be allowed.  By setting `ssh_access` to false you achieve this by not only removing AWS security group rules that allow port 22 access on the VMs but it also closes port 22 and disables openssh service itself inside the instances.  In my own testing it was difficult to validate the other portions of the challenge prompt without ssh access so I created this variable as a way to validate that the other challenge requirements were met (mainly that each vm had a web server running that was ONLY accessable by the other VMs.)
 
-# Running the OCI module
+### Running the OCI module
 The OCI module is an incomplete attempt at the challenge with OCI resources.  Currently this module only creates a VCN, subnet, and an arbitrary number of compute instances (VMs).  Theoretically it also installs a web server on the VMs but I don't believe I configured the firewall to allow egress to pull the package so I don't believe that portion was completed.
 
 ## Results
